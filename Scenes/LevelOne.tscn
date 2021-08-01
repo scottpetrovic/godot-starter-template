@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Graphics/white.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Graphics/orange_boxCross.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 36.6633, 33.9223 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 21.7403, 20.8979 )
+
+[node name="LevelOne" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+margin_left = 332.953
+margin_top = 260.927
+margin_right = 493.953
+margin_bottom = 274.927
+text = "Death and Game over"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 398.808, 118.805 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="Player"]
+margin_left = -30.9543
+margin_top = -31.748
+margin_right = 33.0457
+margin_bottom = 32.252
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DamageItem" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageItem"]
+position = Vector2( 399.452, 223.097 )
+shape = SubResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="DamageItem"]
+margin_left = 380.745
+margin_top = 204.951
+margin_right = 420.745
+margin_bottom = 244.951
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="body_entered" from="DamageItem" to="Player" method="_on_DamageItem_body_entered"]
