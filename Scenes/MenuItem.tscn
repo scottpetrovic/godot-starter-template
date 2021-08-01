@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/MenuItem.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/NormalText.tres" type="DynamicFont" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 0 )
+border_color = Color( 1, 1, 1, 0 )
+
+[node name="StartContainer" type="HBoxContainer"]
+margin_right = 800.0
+margin_bottom = 58.0
+alignment = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedBefore" type="Label" parent="."]
+visible = false
+margin_left = 350.0
+margin_top = 11.0
+margin_right = 364.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "-"
+
+[node name="Button" type="ToolButton" parent="."]
+margin_left = 359.0
+margin_right = 440.0
+margin_bottom = 58.0
+custom_styles/focus = SubResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.101961, 0.101961, 0.101961, 1 )
+text = "ITEM"
+
+[node name="SelectedAfter" type="Label" parent="."]
+visible = false
+margin_left = 444.0
+margin_top = 11.0
+margin_right = 458.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "-"
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]

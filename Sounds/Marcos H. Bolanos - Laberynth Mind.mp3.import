@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Marcos H. Bolanos - Laberynth Mind.mp3-369c062892c42aca77d5302a88f74bde.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Marcos H. Bolanos - Laberynth Mind.mp3"
+dest_files=[ "res://.import/Marcos H. Bolanos - Laberynth Mind.mp3-369c062892c42aca77d5302a88f74bde.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
