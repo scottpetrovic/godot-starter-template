@@ -16,15 +16,12 @@ func _ready():
 	# load level one by default
 	load_level("res://Scenes/LevelOne.tscn")
 
-func show_gameover():
-	print('in game loop about to show game over screen')
-	pass
-
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_pause"):
 		toggle_pause()
 
 func load_main_menu():
+	get_tree().paused = false # in case we paused the screen
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")
 
 func toggle_pause():
@@ -33,8 +30,15 @@ func toggle_pause():
 	$PauseMenu.visible = isGamePaused
 	$Music.volume_db = -12 if isGamePaused else 0 # make bg music quiet on pause
 	
-	
+	# any nodes that have their "pause mode" set to STOP will pause
+	# look at the game loop scene and notice everything is set to process
+	# except the InGame object. That helps all the UI and music keep working
+	# when the game is paused
+	get_tree().paused = isGamePaused
+
+
 func load_level(levelPath):
+	get_tree().paused = false # in case we paused the screen
 	Global.delete_children($InGame) # clear out the demo placeholder first
 	var next_level_resource = load(levelPath)
 	var next_level = next_level_resource.instance()
