@@ -12,9 +12,21 @@ var velocity := Vector2()
 func _ready():
 	pass # Replace with function body.
 
+func calculate_animation_state():
+
+	# what direction we are facing (left/right)
+	# velocity == 0...we aren't pressing anything, so don't calculate
+	if(velocity.x > 0): $AnimatedSprite.flip_h = false
+	elif(velocity.x < 0): $AnimatedSprite.flip_h = true
+
+	# what sprite animation set we should play
+	if(velocity.x == 0 && velocity.y == 0):
+		$AnimatedSprite.set_animation('idle') 
+	else:
+		$AnimatedSprite.set_animation('walk') 
+
 
 func get_input():
-	
 	# basic 8-way movement
 	velocity = Vector2()	
 	if Input.is_action_pressed("ui_right"):
@@ -26,6 +38,7 @@ func get_input():
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
 	velocity = velocity.normalized() * move_speed
+	calculate_animation_state()
 
 func _physics_process(delta: float):
 	get_input()
