@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/backgroundColorGrass.png-8a31fd7b5471d05f68bd8bd4290a4e61.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Graphics/Backgrounds/backgroundColorGrass.png"
+dest_files=[ "res://.import/backgroundColorGrass.png-8a31fd7b5471d05f68bd8bd4290a4e61.stex" ]
+
+[params]
+
+compress/mode=1
+compress/lossy_quality=0.64
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=2
+flags/repeat=1
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=false
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

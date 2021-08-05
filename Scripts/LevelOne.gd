@@ -7,20 +7,27 @@ var narratorText = ['WAIT!!!',
 	'THERE IS MORE TO LIFE THAN DEATH',
 	'JUST RELAX AND HANG OUT FOR A BIT']
 
+func haveCameraFollowPlayer(): 
+	$Camera2D.position.x = $Player.position.x - (get_viewport().size.x/2)
+
+
 
 func _ready():
-	$UI/Conversation.connect("messageEnded", self, "_messageEnded")
+	$Camera2D/UI/Conversation.connect("messageEnded", self, "_messageEnded")
 
 func _canShowMessage():
 	var onLastMessage = narratorTextIndex == narratorText.size()
-	return $UI/Conversation.visible == false != onLastMessage
+	return $Camera2D/UI/Conversation.visible == false != onLastMessage
 
 func _process(delta):
+	
+	haveCameraFollowPlayer()
+	
 	if(_canShowMessage()):
 		var closeDistance = 200 # pixels where object is close
 		var dist = distanceBetweenObjects($Player, $DamageItem)
 		if(dist < closeDistance):
-			$UI/Conversation.showConversation(narratorText[narratorTextIndex], 2.5)
+			$Camera2D/UI/Conversation.showConversation(narratorText[narratorTextIndex], 2.5)
 
 func _messageEnded():
 	narratorTextIndex += 1
