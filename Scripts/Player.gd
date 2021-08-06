@@ -1,9 +1,12 @@
 extends KinematicBody2D
 
 
-# Declare member variables here. Examples:
-var current_health = 1 # 1 hit and you are dead
+# export health so UI can use it
+export var current_health = 3 # 3 hits and you are dead
 var move_speed = 100
+var isInvincible = false # you are for a small amount of time when you get hurt
+onready var rng = RandomNumberGenerator.new()
+var invincibleTime = 2.0
 
 # jumping variables
 export var isCurrentlyJumping = false
@@ -17,7 +20,21 @@ var velocity := Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$InvincibleTimer.wait_time = invincibleTime # X second delay between being hurt
+	$InvincibleTimer.one_shot = true
+	$InvincibleTimer.connect("timeout", self, "make_mortal")
 	pass # Replace with function body.
+
+func make_mortal():
+	isInvincible = false
+	var randomColor = Color(1.0, 1.0, 1.0)
+	$AnimatedSprite.set_modulate(randomColor)
+
+func _process(delta):
+	if(isInvincible):
+		var randomColor = Color(rng.randfn(), rng.randfn(), rng.randfn())
+		$AnimatedSprite.set_modulate(randomColor)
+
 
 func calculate_animation_state():
 
@@ -31,7 +48,6 @@ func calculate_animation_state():
 		$AnimatedSprite.set_animation('idle') 
 	else:
 		$AnimatedSprite.set_animation('walk') 
-
 
 func get_movement():
 	# basic 8-way movement
@@ -49,8 +65,6 @@ func get_movement():
 	velocity = velocity.normalized() * move_speed
 
 func get_jumping(delta):
-		
-	print(isCurrentlyJumping)
 		
 	if(isCurrentlyJumping):
 		# we are already jumping...so apply pseudo-gravity
@@ -97,8 +111,15 @@ func _physics_process(delta: float):
 	calculate_animation_state()
 	velocity = move_and_slide(velocity)
 
-func _on_DamageItem_body_entered(_body):
-	current_health -= 1
+# external objects call this and send in how much damage is done
+func player_damaged(body, damageDone: int):
+	if(isInvincible == false):
+		current_health -= damageDone
+	
 	if(current_health <= 0):
 		get_tree().change_scene("res://Scenes/GameOver.tscn")
 		# Global.player_died()
+	else:
+		# invincible for a bit so you don't get hurt
+		isInvincible = true
+		$InvincibleTimer.start()

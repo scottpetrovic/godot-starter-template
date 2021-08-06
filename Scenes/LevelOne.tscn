@@ -12,10 +12,10 @@
 [ext_resource path="res://Scripts/PlayerShadow.gd" type="Script" id=10]
 [ext_resource path="res://Graphics/Primitives/black_circle.png" type="Texture" id=11]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 21.7403, 20.8979 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 14.452, 21.7673 )
 
 [node name="LevelOne" type="Node2D"]
@@ -48,14 +48,14 @@ centered = false
 flip_h = true
 
 [node name="DamageItem" type="Area2D" parent="."]
-position = Vector2( 705.8, 85.2928 )
+position = Vector2( 387.712, 503.993 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageItem"]
 position = Vector2( 1.86975, -0.860367 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="TextureRect" type="TextureRect" parent="DamageItem"]
 margin_left = -17.3901
@@ -63,16 +63,6 @@ margin_top = -18.055
 margin_right = 22.6099
 margin_bottom = 21.945
 texture = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GameOverLabel" type="Label" parent="DamageItem"]
-margin_left = -72.0
-margin_top = 36.0
-margin_right = 75.0
-margin_bottom = 50.0
-text = "Death and Game over"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -87,6 +77,7 @@ smoothing_speed = 1.0
 script = ExtResource( 9 )
 
 [node name="UI" type="Node2D" parent="Camera2D"]
+position = Vector2( 12.1194, 8.70885 )
 rotation = 0.0175457
 __meta__ = {
 "_edit_group_": true
@@ -133,6 +124,15 @@ __meta__ = {
 
 [node name="Timer" type="Timer" parent="Camera2D/UI/Conversation"]
 
+[node name="LifeBar" type="Node2D" parent="Camera2D/UI"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CharacterImage" type="Sprite" parent="Camera2D/UI/LifeBar"]
+texture = ExtResource( 1 )
+centered = false
+
 [node name="Tween" type="Tween" parent="Camera2D"]
 
 [node name="PlayerShadow" type="Sprite" parent="."]
@@ -152,7 +152,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2( 0.5, 5.5 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
 scale = Vector2( 0.5, 0.5 )
@@ -160,4 +160,8 @@ frames = ExtResource( 7 )
 animation = "idle"
 playing = true
 
-[connection signal="body_entered" from="DamageItem" to="Player" method="_on_DamageItem_body_entered"]
+[node name="InvincibleTimer" type="Timer" parent="Player"]
+
+[node name="DamagedTween" type="Tween" parent="Player"]
+
+[connection signal="body_entered" from="DamageItem" to="Player" method="player_damaged" binds= [ 1 ]]
