@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Graphics/white.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Graphics/Character/Character-animations.tres" type="SpriteFrames" id=7]
 [ext_resource path="res://Graphics/Backgrounds/backgroundColorGrass.png" type="Texture" id=8]
 [ext_resource path="res://Scripts/CameraFollow.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/PlayerShadow.gd" type="Script" id=10]
+[ext_resource path="res://Graphics/Primitives/black_circle.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 21.7403, 20.8979 )
@@ -25,7 +27,7 @@ __meta__ = {
 }
 
 [node name="background" type="Sprite" parent="Background"]
-position = Vector2( -2.12769, -176.916 )
+position = Vector2( -0.786959, -176.916 )
 texture = ExtResource( 8 )
 centered = false
 
@@ -132,6 +134,14 @@ __meta__ = {
 [node name="Timer" type="Timer" parent="Camera2D/UI/Conversation"]
 
 [node name="Tween" type="Tween" parent="Camera2D"]
+
+[node name="PlayerShadow" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0.231373 )
+position = Vector2( 156.771, 536.686 )
+scale = Vector2( 0.0514302, 0.0137439 )
+texture = ExtResource( 11 )
+centered = false
+script = ExtResource( 10 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
 position = Vector2( 168.918, 513.44 )
