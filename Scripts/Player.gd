@@ -5,7 +5,7 @@ extends KinematicBody2D
 var current_health = 1 # 1 hit and you are dead
 var move_speed = 100
 
- # adds up our directions to see which way to move
+# adds up our directions to see which way to move
 var velocity := Vector2()
 
 # Called when the node enters the scene tree for the first time.
@@ -31,14 +31,39 @@ func get_input():
 	velocity = Vector2()	
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1
-	if Input.is_action_pressed("ui_left"):
-		velocity.x -= 1
+	if Input.is_action_pressed("ui_left"):		
+		if(blockLeftInput() == false):
+			velocity.x -= 1
 	if Input.is_action_pressed("ui_down"):
-		velocity.y += 1
+		if(blockDownInput() == false):
+			velocity.y += 1
 	if Input.is_action_pressed("ui_up"):
-		velocity.y -= 1
+		if(blockUpInput() == false):
+			velocity.y -= 1
 	velocity = velocity.normalized() * move_speed
 	calculate_animation_state()
+
+func blockLeftInput():
+	# we don't want to move left we hit the left side of the camera area
+	# camera position will start out at 0
+	var cameraPosition = get_parent().get_node("Camera2D").position.x
+	var distanceFromLeftCameraSideToPlayer = position.x - cameraPosition
+	
+	var distanceToBlock = 50 # distance from camera to start blocking
+	if(distanceToBlock > distanceFromLeftCameraSideToPlayer): return true
+	else: return false
+
+func blockDownInput():
+	# this is a horizontal scroller, so camera is not moving up/down
+	# this makes sure our character can only move down as far as the camera is
+	#print(position.y)
+	if(position.y > 540): return true
+	return false
+
+func blockUpInput():
+	print(position.y)
+	if(position.y < 485): return true
+	return false
 
 func _physics_process(delta: float):
 	get_input()

@@ -8,44 +8,42 @@
 [ext_resource path="res://Scripts/Conversation.gd" type="Script" id=6]
 [ext_resource path="res://Graphics/Character/Character-animations.tres" type="SpriteFrames" id=7]
 [ext_resource path="res://Graphics/Backgrounds/backgroundColorGrass.png" type="Texture" id=8]
-[ext_resource path="res://Graphics/Backgrounds/bushAlt1.png" type="Texture" id=9]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 14.452, 21.7673 )
+[ext_resource path="res://Scripts/CameraFollow.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 21.7403, 20.8979 )
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 14.452, 21.7673 )
+
 [node name="LevelOne" type="Node2D"]
 script = ExtResource( 5 )
 
-[node name="Background" type="ParallaxBackground" parent="."]
+[node name="Background" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
-position = Vector2( -2.66968, 0 )
-motion_mirroring = Vector2( 1024, 0 )
-
-[node name="Sprite" type="Sprite" parent="Background/ParallaxLayer"]
-position = Vector2( -0.458008, -177.916 )
+[node name="background" type="Sprite" parent="Background"]
+position = Vector2( -2.12769, -176.916 )
 texture = ExtResource( 8 )
 centered = false
 
-[node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 381.376, 490.651 )
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="background3" type="Sprite" parent="Background"]
+position = Vector2( 2043.5, -177.916 )
+texture = ExtResource( 8 )
+centered = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2( 0.5, 5.5 )
-shape = SubResource( 1 )
+[node name="background4" type="Sprite" parent="Background"]
+position = Vector2( -1020.72, -177.916 )
+texture = ExtResource( 8 )
+centered = false
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
-scale = Vector2( 0.5, 0.5 )
-frames = ExtResource( 7 )
-animation = "idle"
-playing = true
+[node name="background2" type="Sprite" parent="Background"]
+position = Vector2( 1020.75, -177.916 )
+texture = ExtResource( 8 )
+centered = false
+flip_h = true
 
 [node name="DamageItem" type="Area2D" parent="."]
 position = Vector2( 705.8, 85.2928 )
@@ -77,25 +75,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Foreground" type="ParallaxBackground" parent="."]
-
-[node name="Foreground" type="ParallaxLayer" parent="Foreground"]
-motion_scale = Vector2( 1.5, 1 )
-motion_mirroring = Vector2( 1410, 0 )
-
-[node name="Sprite" type="Sprite" parent="Foreground/Foreground"]
-position = Vector2( 402.849, 518.69 )
-scale = Vector2( 10, 2.27804 )
-texture = ExtResource( 9 )
-offset = Vector2( 3.28415, 11.7806 )
-
 [node name="Camera2D" type="Camera2D" parent="."]
 rotation = -0.0175457
 z_index = 100
 z_as_relative = false
 anchor_mode = 0
 current = true
-smoothing_speed = 2.0
+smoothing_speed = 1.0
+script = ExtResource( 9 )
 
 [node name="UI" type="Node2D" parent="Camera2D"]
 rotation = 0.0175457
@@ -143,5 +130,24 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="Camera2D/UI/Conversation"]
+
+[node name="Tween" type="Tween" parent="Camera2D"]
+
+[node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 168.918, 513.44 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2( 0.5, 5.5 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
+scale = Vector2( 0.5, 0.5 )
+frames = ExtResource( 7 )
+animation = "idle"
+playing = true
 
 [connection signal="body_entered" from="DamageItem" to="Player" method="_on_DamageItem_body_entered"]
