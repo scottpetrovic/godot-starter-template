@@ -3,15 +3,15 @@ extends KinematicBody2D
 
 # export health so UI can use it
 export var current_health = 3 # 3 hits and you are dead
-var move_speed = 100
+var move_speed = 150
 var isInvincible = false # you are for a small amount of time when you get hurt
 onready var rng = RandomNumberGenerator.new()
 var invincibleTime = 2.0
 
 # jumping variables
 export var isCurrentlyJumping = false
-var jump_max_velocity = 150 # tweak until it feels right (jump power)
-var jump_gravity = 250 # tweak until it feels right (downward force)
+var jump_max_velocity = 400 # tweak until it feels right (jump power)
+var jump_gravity = 550 # tweak until it feels right (downward force)
 var jump_current_velocity = 0
 export var jump_y_pos = 0 # where we started jumping at to know when we land
 
@@ -101,7 +101,7 @@ func blockDownInput():
 	return false
 
 func blockUpInput():
-	if(position.y < 485 || isCurrentlyJumping == true): return true
+	if(position.y < 300 || isCurrentlyJumping == true): return true
 	return false
 
 func _physics_process(delta: float):

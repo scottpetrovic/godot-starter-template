@@ -16,18 +16,19 @@
 extents = Vector2( 21.7403, 20.8979 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 14.452, 21.7673 )
+extents = Vector2( 27.7528, 42.4653 )
 
 [node name="LevelOne" type="Node2D"]
 script = ExtResource( 5 )
 
 [node name="Background" type="Node2D" parent="."]
+position = Vector2( 0, -213.816 )
 __meta__ = {
-"_edit_lock_": true
+"_edit_group_": true
 }
 
 [node name="background" type="Sprite" parent="Background"]
-position = Vector2( -0.786959, -176.916 )
+position = Vector2( -1.25888, -176.916 )
 texture = ExtResource( 8 )
 centered = false
 
@@ -37,7 +38,7 @@ texture = ExtResource( 8 )
 centered = false
 
 [node name="background4" type="Sprite" parent="Background"]
-position = Vector2( -1020.72, -177.916 )
+position = Vector2( -1021.47, -177.916 )
 texture = ExtResource( 8 )
 centered = false
 
@@ -137,25 +138,24 @@ centered = false
 
 [node name="PlayerShadow" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0.231373 )
-position = Vector2( 156.771, 536.686 )
-scale = Vector2( 0.0514302, 0.0137439 )
+position = Vector2( 144.501, 535.742 )
+scale = Vector2( 0.0929091, 0.0137439 )
 texture = ExtResource( 11 )
 centered = false
 script = ExtResource( 10 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 168.918, 513.44 )
+position = Vector2( 167.974, 483.708 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2( 0.5, 5.5 )
+position = Vector2( -0.443878, 12.1071 )
 shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
-scale = Vector2( 0.5, 0.5 )
 frames = ExtResource( 7 )
 animation = "idle"
 playing = true

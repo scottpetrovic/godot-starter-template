@@ -14,10 +14,10 @@ func _ready():
 	cameraMinX = playerNode.position.x - (get_viewport().size.x/2)
 
 func _process(delta):	
-	# if player is greater than 80% of the way to the end of the viwport...
+	# if player is greater than 50% of the way to the end of the viwport...
 	# we need to start moving the camera forward
 	# a value of 0 means we are right at 80%. -10 means we are 10 pixels to the left
-	var viewportMovePosition = self.position.x + (get_viewport().size.x*0.80)
+	var viewportMovePosition = self.position.x + (get_viewport().size.x*0.50)
 	var distanceToMoveCamera = playerNode.position.x - viewportMovePosition
 
 	# move the camera if we are at the right side of the viewport and need to scroll

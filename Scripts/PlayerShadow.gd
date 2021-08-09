@@ -6,8 +6,8 @@ extends Sprite
 # var b = "text"
 
 onready var playerObject = get_parent().get_node("Player")
-var shadowXOffset = 12
-var shadowYOffset = 23; # change based on sprite. 
+var shadowXOffset = 18
+var shadowYOffset = 53; # change based on sprite. 
 
 func _process(delta):
 	# go underneath the player by default
