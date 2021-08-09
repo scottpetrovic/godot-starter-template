@@ -1,10 +1,5 @@
 extends Sprite
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 onready var playerObject = get_parent().get_node("Player")
 var shadowXOffset = 18
 var shadowYOffset = 53; # change based on sprite. 
@@ -16,8 +11,5 @@ func _process(delta):
 	position.x -= shadowXOffset
 	
 	if(playerObject.isCurrentlyJumping) :
-		position.y = playerObject.jump_y_pos + shadowYOffset
-		
+		position.y += playerObject.jump_landing_y_pos
 
-	
-	# if we are jumping..we need to remember where the bottom of the jump is
