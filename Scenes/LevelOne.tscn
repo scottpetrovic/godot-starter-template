@@ -178,11 +178,13 @@ shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
 frames = ExtResource( 7 )
-animation = "idle"
+animation = "fall"
 playing = true
 
 [node name="InvincibleTimer" type="Timer" parent="Player"]
 
 [node name="DamagedTween" type="Tween" parent="Player"]
+
+[node name="AttackTimer" type="Timer" parent="Player"]
 
 [connection signal="body_entered" from="DamageItem" to="Player" method="player_damaged" binds= [ 1 ]]

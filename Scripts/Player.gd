@@ -15,6 +15,14 @@ var jump_gravity = 50 # tweak until it feels right (downward force)
 var jump_current_velocity = 0
 export var jump_landing_y_pos = 0 # where we started jumping at to know when we land
 
+
+# attacking variables
+# if we are attacking we cannot start jumping
+var isPlayerAttacking = false
+var isPlayerPunching = false
+var isPlayerKicking = false
+var attackTime = 0.1 # seconds each attack lasts
+
 # adds up our directions to see which way to move
 var velocity := Vector2()
 
@@ -23,7 +31,18 @@ func _ready():
 	$InvincibleTimer.wait_time = invincibleTime # X second delay between being hurt
 	$InvincibleTimer.one_shot = true
 	$InvincibleTimer.connect("timeout", self, "make_mortal")
-	pass # Replace with function body.
+
+	# attacks only last so long. This timer helps us know how long to do an animation
+	# better would be to use an animation event...but can do that later
+	$AttackTimer.wait_time = attackTime
+	$AttackTimer.one_shot = true
+	$AttackTimer.connect("timeout", self, "attack_finished")
+
+func attack_finished():
+	print('attack finsihed')
+	isPlayerAttacking = false
+	isPlayerPunching = false
+	isPlayerKicking = false
 
 func make_mortal():
 	isInvincible = false
@@ -49,13 +68,35 @@ func calculate_animation_state():
 	if(velocity.x > 0): $AnimatedSprite.flip_h = false
 	elif(velocity.x < 0): $AnimatedSprite.flip_h = true
 
-	# what sprite animation set we should play
-	if(velocity.x == 0 && velocity.y == 0):
-		$AnimatedSprite.set_animation('idle') 
-	else:
-		$AnimatedSprite.set_animation('walk') 
+
+	if(isCurrentlyJumping):
+		if(jump_current_velocity > 0): $AnimatedSprite.set_animation('jump')
+		else:  $AnimatedSprite.set_animation('fall')
+	elif (isPlayerAttacking == false):
+		# if we are already attacking, we don't want to interrupt that
+		# so only change the animation state if we are not attacking
+		if(isPlayerKicking):
+			$AnimatedSprite.set_animation('kick')
+			isPlayerAttacking = true # need to finish first attack before attacking again
+			$AttackTimer.start()
+		elif (isPlayerPunching):
+			$AnimatedSprite.set_animation('punch')
+			isPlayerAttacking = true
+			$AttackTimer.start()
+		else:
+			# we are not jumping or attacking...so we are idling
+			# what sprite animation set we should play
+			if(velocity.x == 0 && velocity.y == 0):
+				$AnimatedSprite.set_animation('idle') 
+			else:
+				$AnimatedSprite.set_animation('walk') 
 
 func get_movement(delta):
+	
+	# if we are in the middle of attacking...ignore movement
+	if(isPlayerAttacking == true):
+		return
+	
 	# basic 8-way movement
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1
@@ -104,6 +145,16 @@ func get_jumping(delta):
 			$CollisionShape2D.position.y -= jump_current_velocity
 			$AnimatedSprite.position.y -= jump_current_velocity
 
+func get_attacking(delta):
+	
+	if Input.is_action_pressed("player_punch"):
+		isPlayerPunching = true
+		isPlayerKicking = false
+		# start attack timer for how long the attack is
+	elif Input.is_action_pressed("player_kick"):
+		isPlayerKicking = true
+		isPlayerPunching = false
+
 func blockLeftInput():
 	# we don't want to move left we hit the left side of the camera area
 	# camera position will start out at 0
@@ -127,6 +178,7 @@ func blockUpInput(delta):
 
 func _physics_process(delta: float):
 	velocity = Vector2() # calculate new movement amount
+	get_attacking(delta)
 	get_movement(delta)
 	get_jumping(delta)
 	calculate_animation_state()
