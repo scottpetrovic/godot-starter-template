@@ -32,8 +32,14 @@ func make_mortal():
 
 func _process(delta):
 	if(isInvincible):
-		var randomColor = Color(rng.randfn(), rng.randfn(), rng.randfn())
-		$AnimatedSprite.set_modulate(randomColor)
+		# we are going to alternate between whiter and transparent
+		# anything above 1.0 makes whiter...below 1.0 makes darker
+		var colorValue = Color(1.3, 1.3, 1.3, 1.0)
+		if(rng.randfn() > 0.5):
+			colorValue = Color(0.0, 0.0, 0.0, 0.0)
+		
+		#var randomColor = Color(rng.randfn(), rng.randfn(), rng.randfn())
+		$AnimatedSprite.set_modulate(colorValue)
 
 
 func calculate_animation_state():
