@@ -1,6 +1,11 @@
 extends Node2D
 
 func _ready():
+	
+	# save references to common objects that a lot of nodes reference
+	Global.playerOneObject = get_node('Player')
+	Global.cameraObject = get_node('Camera2D')
+	
 	if(Global.isMusicOn):
 		$Music.play()
 

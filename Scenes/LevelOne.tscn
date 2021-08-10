@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Graphics/white.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -21,6 +21,9 @@ extents = Vector2( 21.7403, 20.8979 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 27.7528, 42.4653 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 17.576, 20.3515 )
 
 [node name="LevelOne" type="Node2D"]
 script = ExtResource( 5 )
@@ -172,13 +175,6 @@ script = ExtResource( 10 )
 [node name="Player" type="KinematicBody2D" parent="."]
 position = Vector2( 167.974, 483.708 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2( -0.443878, 12.1071 )
-shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
 frames = ExtResource( 7 )
@@ -190,6 +186,21 @@ playing = true
 [node name="DamagedTween" type="Tween" parent="Player"]
 
 [node name="AttackTimer" type="Timer" parent="Player"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2( -0.443878, 12.1071 )
+shape = SubResource( 2 )
+
+[node name="AttackCollisionArea" type="Area2D" parent="Player" groups=[
+"PlayerAttack",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackCollisionArea"]
+position = Vector2( 51.6188, 24.0417 )
+shape = SubResource( 3 )
+disabled = true
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource( 13 )

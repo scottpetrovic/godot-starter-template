@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-
 # export health so UI can use it
 export var current_health = 3 # 3 hits and you are dead
 var move_speed = 150
@@ -21,7 +20,7 @@ export var jump_landing_y_pos = 0 # where we started jumping at to know when we 
 var isPlayerAttacking = false
 var isPlayerPunching = false
 var isPlayerKicking = false
-var attackTime = 0.1 # seconds each attack lasts
+var attackTime = 0.15 # seconds each attack lasts
 
 # adds up our directions to see which way to move
 var velocity := Vector2()
@@ -39,10 +38,10 @@ func _ready():
 	$AttackTimer.connect("timeout", self, "attack_finished")
 
 func attack_finished():
-	print('attack finsihed')
 	isPlayerAttacking = false
 	isPlayerPunching = false
 	isPlayerKicking = false
+	$AttackCollisionArea/CollisionShape2D.disabled = true
 
 func make_mortal():
 	isInvincible = false
@@ -65,8 +64,15 @@ func calculate_animation_state():
 
 	# what direction we are facing (left/right)
 	# velocity == 0...we aren't pressing anything, so don't calculate
-	if(velocity.x > 0): $AnimatedSprite.flip_h = false
-	elif(velocity.x < 0): $AnimatedSprite.flip_h = true
+	# the set_scale on the collision helps our collision area flip positions
+	if(velocity.x > 0): 
+		$AnimatedSprite.flip_h = false
+		$AttackCollisionArea.set_scale(Vector2(1,1))
+	elif(velocity.x < 0): 
+		$AnimatedSprite.flip_h = true
+		$AttackCollisionArea.set_scale(Vector2(-1,1))
+
+	
 
 
 	if(isCurrentlyJumping):
@@ -78,10 +84,12 @@ func calculate_animation_state():
 		if(isPlayerKicking):
 			$AnimatedSprite.set_animation('kick')
 			isPlayerAttacking = true # need to finish first attack before attacking again
+			$AttackCollisionArea/CollisionShape2D.disabled = false
 			$AttackTimer.start()
 		elif (isPlayerPunching):
 			$AnimatedSprite.set_animation('punch')
 			isPlayerAttacking = true
+			$AttackCollisionArea/CollisionShape2D.disabled = false
 			$AttackTimer.start()
 		else:
 			# we are not jumping or attacking...so we are idling

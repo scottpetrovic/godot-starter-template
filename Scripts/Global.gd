@@ -6,6 +6,13 @@ var isSFXOn = true
 
 signal player_died
 
+
+var playerOneObject
+var cameraObject
+
+
+
+
 # utility function that will clear all children of a node
 # the game loop uses this to clear out a level before loading a new one
 func delete_children(node):
