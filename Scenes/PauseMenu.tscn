@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/MenuItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/PauseMenu.gd" type="Script" id=3]
+[ext_resource path="res://Fonts/MenuFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Graphics/white.png" type="Texture" id=5]
+
+[node name="PauseMenu" type="Node2D"]
+pause_mode = 2
+visible = false
+script = ExtResource( 3 )
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color( 0, 0, 0, 0.870588 )
+margin_right = 807.0
+margin_bottom = 606.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+margin_top = 174.667
+margin_right = 795.0
+margin_bottom = 234.667
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "PAUSED"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuOptions" type="VBoxContainer" parent="."]
+margin_left = 0.52124
+margin_top = 254.979
+margin_right = 797.522
+margin_bottom = 394.979
+custom_constants/separation = 0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ReturnToGame" parent="MenuOptions" instance=ExtResource( 1 )]
+margin_right = 797.0
+margin_bottom = 44.0
+item_name = "RETURN TO GAME"
+item_font_color = Color( 1, 1, 1, 1 )
+
+[node name="ReturnToTitle" parent="MenuOptions" instance=ExtResource( 1 )]
+margin_top = 44.0
+margin_right = 797.0
+margin_bottom = 88.0
+item_name = "RETURN TO TITLE"
+item_font_color = Color( 1, 1, 1, 1 )

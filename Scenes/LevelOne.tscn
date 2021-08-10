@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Graphics/white.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://Graphics/Primitives/black_circle.png" type="Texture" id=11]
 [ext_resource path="res://Scripts/PlayerUI.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/SpawnTimer.gd" type="Script" id=13]
+[ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Sounds/Marcos H. Bolanos - Laberynth Mind.mp3" type="AudioStream" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 21.7403, 20.8979 )
@@ -80,7 +82,6 @@ smoothing_speed = 1.0
 script = ExtResource( 9 )
 
 [node name="UI" type="Node2D" parent="Camera2D"]
-position = Vector2( 20.9601, 17.8654 )
 rotation = 0.0175457
 script = ExtResource( 12 )
 
@@ -156,6 +157,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="PauseMenu" parent="Camera2D/UI" instance=ExtResource( 14 )]
+
 [node name="Tween" type="Tween" parent="Camera2D"]
 
 [node name="PlayerShadow" type="Sprite" parent="."]
@@ -193,5 +196,9 @@ script = ExtResource( 13 )
 
 [node name="SpawnTimer" type="Timer" parent="Enemies"]
 autostart = true
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 2
+stream = ExtResource( 15 )
 
 [connection signal="body_entered" from="DamageItem" to="Player" method="player_damaged" binds= [ 1 ]]

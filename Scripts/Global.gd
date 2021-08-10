@@ -6,10 +6,6 @@ var isSFXOn = true
 
 signal player_died
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
 # utility function that will clear all children of a node
 # the game loop uses this to clear out a level before loading a new one
 func delete_children(node):
@@ -17,6 +13,9 @@ func delete_children(node):
 		node.remove_child(n)
 		n.queue_free()
 
-
 func player_died():
 	emit_signal('player_died')
+	
+func distanceBetweenObjects(object1: Node2D, object2: Node2D):
+	var a = Vector2( object2.position - object1.position )
+	return sqrt( (a.x * a.x) + (a.y * a.y) )

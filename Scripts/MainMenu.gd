@@ -8,7 +8,7 @@ func _ready():
 
 
 func load_game():
-	get_tree().change_scene("res://Scenes/GameLoop.tscn")
+	get_tree().change_scene("res://Scenes/LevelOne.tscn")
 
 func load_options():
 	get_tree().change_scene("res://Scenes/OptionsMenu.tscn")
