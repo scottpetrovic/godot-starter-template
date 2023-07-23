@@ -3,11 +3,11 @@ extends Control
 var isGamePaused = false
 
 func _ready():
-	$PauseMenu/MenuOptions/ReturnToGame/Button.connect("button_down", self, "toggle_pause")
-	$PauseMenu/MenuOptions/ReturnToTitle/Button.connect("button_down", self, "load_main_menu")
+	$PauseMenu/MenuOptions/ReturnToGame/Button.connect("button_down", Callable(self, "toggle_pause"))
+	$PauseMenu/MenuOptions/ReturnToTitle/Button.connect("button_down", Callable(self, "load_main_menu"))
 	
-	# level will emit a player_died() signal...which Global can listen to
-	Global.connect("player_died", self, 'show_gameover')
+	# level will emit a player_dead() signal...which Global can listen to
+	Global.connect("player_dead", Callable(self, 'show_gameover'))
 	
 	# only play music if it is enabled
 	if(Global.isMusicOn):
@@ -22,7 +22,7 @@ func _process(_delta):
 
 func load_main_menu():
 	get_tree().paused = false # in case we paused the screen
-	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 
 func toggle_pause():
 	# get_tree().paused = not get_tree().paused
@@ -41,5 +41,5 @@ func load_level(levelPath):
 	get_tree().paused = false # in case we paused the screen
 	Global.delete_children($InGame) # clear out the demo placeholder first
 	var next_level_resource = load(levelPath)
-	var next_level = next_level_resource.instance()
+	var next_level = next_level_resource.instantiate()
 	$InGame.add_child(next_level)

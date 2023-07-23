@@ -5,7 +5,7 @@ signal messageEnded
 func _ready():
 	# configure timer to show message for X seconds
 	$Timer.one_shot = true
-	$Timer.connect("timeout", self, "_timeout")
+	$Timer.connect("timeout", Callable(self, "_timeout"))
 
 func showConversation(textToShow, length = 3.0):
 	$RichTextLabel.text = textToShow

@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/Marcos H. Bolanos - Laberynth Mind.mp3-369c062892c42aca77d5302a88f74bde.mp3str"
+uid="uid://dtrp3xk08dx4j"
+path="res://.godot/imported/Marcos H. Bolanos - Laberynth Mind.mp3-369c062892c42aca77d5302a88f74bde.mp3str"
 
 [deps]
 
 source_file="res://Sounds/Marcos H. Bolanos - Laberynth Mind.mp3"
-dest_files=[ "res://.import/Marcos H. Bolanos - Laberynth Mind.mp3-369c062892c42aca77d5302a88f74bde.mp3str" ]
+dest_files=["res://.godot/imported/Marcos H. Bolanos - Laberynth Mind.mp3-369c062892c42aca77d5302a88f74bde.mp3str"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

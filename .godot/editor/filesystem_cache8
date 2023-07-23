@@ -1,0 +1,32 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1690150764
+default_env.tres::Environment::-1::1690150754::0::1::::<><>::
+icon.png::CompressedTexture2D::6394364258651499807::1690150305::1690150765::1::::<><>::
+::res://Fonts/::1690150578
+MenuFont.tres::FontFile::-1::1690150755::0::1::::<><>::res://Fonts/Roboto-Black.ttf
+NormalText.tres::FontFile::-1::1690150755::0::1::::<><>::res://Fonts/Roboto-Regular.ttf
+Roboto-Black.ttf::FontFile::2888800808460738637::1690150304::1690150765::1::::<><>::
+Roboto-Regular.ttf::FontFile::1679243901786624148::1690150304::1690150765::1::::<><>::
+::res://Graphics/::1690150576
+orange_boxCross.png::CompressedTexture2D::2346584125372763090::1690150304::1690150765::1::::<><>::
+white.png::CompressedTexture2D::8655351881658638312::1690150304::1690150765::1::::<><>::
+::res://Scenes/::1690150576
+GameLoop.tscn::PackedScene::-1::1690150755::0::1::::<><>::res://Scenes/MenuItem.tscn<>res://Graphics/white.png<>res://Fonts/MenuFont.tres<>res://Scripts/GameLoop.gd<>res://Sounds/Marcos H. Bolanos - Laberynth Mind.mp3
+GameOver.tscn::PackedScene::-1::1690150755::0::1::::<><>::res://Scenes/MenuItem.tscn<>res://Graphics/white.png<>res://Fonts/MenuFont.tres<>res://Scripts/GameOverMenu.gd
+LevelOne.tscn::PackedScene::-1::1690150755::0::1::::<><>::res://Graphics/white.png<>res://Scripts/Player.gd<>res://Graphics/orange_boxCross.png<>res://Fonts/NormalText.tres<>res://Scripts/LevelOne.gd<>res://Scripts/Conversation.gd
+MainMenu.tscn::PackedScene::-1::1690150755::0::1::::<><>::res://Scenes/MenuItem.tscn<>res://Graphics/white.png<>res://Fonts/MenuFont.tres<>res://Scripts/MainMenu.gd
+MenuItem.tscn::PackedScene::-1::1690150755::0::1::::<><>::res://Scripts/MenuItem.gd<>res://Fonts/NormalText.tres
+OptionsMenu.tscn::PackedScene::-1::1690150755::0::1::::<><>::res://Scenes/MenuItem.tscn<>res://Graphics/white.png<>res://Fonts/MenuFont.tres<>res://Scripts/OptionsMenu.gd
+::res://Scripts/::1690150576
+Conversation.gd::GDScript::-1::1690150754::0::1::::<>Node2D<>::
+GameLoop.gd::GDScript::-1::1690150754::0::1::::<>Control<>::
+GameOverMenu.gd::GDScript::-1::1690150754::0::1::::<>Control<>::
+Global.gd::GDScript::-1::1690150754::0::1::::<>Node<>::
+LevelOne.gd::GDScript::-1::1690150754::0::1::::<>Node2D<>::
+MainMenu.gd::GDScript::-1::1690150754::0::1::::<>Control<>::
+MenuItem.gd::GDScript::-1::1690150754::0::1::::<>RefCounted<>::
+OptionsMenu.gd::GDScript::-1::1690150754::0::1::::<>Control<>::
+Player.gd::GDScript::-1::1690150754::0::1::::<>CharacterBody2D<>::
+::res://Sounds/::1690150576
+Marcos H. Bolanos - Laberynth Mind.mp3::AudioStreamMP3::8528906483806996359::1690150305::1690150765::1::::<><>::
+menu_hover.wav::AudioStreamWAV::3208574307612367826::1690150305::1690150765::1::::<><>::

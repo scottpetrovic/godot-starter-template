@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 
 # Declare member variables here. Examples:
@@ -6,7 +6,7 @@ var current_health = 1 # 1 hit and you are dead
 var move_speed = 100
 
  # adds up our directions to see which way to move
-var velocity := Vector2()
+# var velocity := Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,10 +29,11 @@ func get_input():
 
 func _physics_process(delta: float):
 	get_input()
-	velocity = move_and_slide(velocity)
+	set_velocity(velocity)
+	move_and_slide()
+	velocity = velocity
 
 func _on_DamageItem_body_entered(_body):
 	current_health -= 1
 	if(current_health <= 0):
-		get_tree().change_scene("res://Scenes/GameOver.tscn")
-		# Global.player_died()
+		get_tree().change_scene_to_file("res://Scenes/GameOver.tscn")

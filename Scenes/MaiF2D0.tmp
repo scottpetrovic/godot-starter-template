@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7lpi4k82tk7i"]
+
+[ext_resource type="PackedScene" uid="uid://bpxj0ax3401ty" path="res://Scenes/MenuItem.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://dvkym7mabprim" path="res://Graphics/white.png" id="2"]
+[ext_resource type="FontFile" path="res://Fonts/MenuFont.tres" id="3"]
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="4"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(-101.373, -14.0516)
+script = ExtResource("4")
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 798.0
+offset_bottom = 597.0
+texture = ExtResource("2")
+expand_mode = 1
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_top = 174.667
+offset_right = 795.0
+offset_bottom = 234.667
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+text = "Awesome Game"
+
+[node name="MenuOptions" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -0.145447
+offset_top = 278.312
+offset_right = 796.855
+offset_bottom = 418.312
+theme_override_constants/separation = 0
+
+[node name="GameStart" parent="MenuOptions" instance=ExtResource("1")]
+layout_mode = 2
+item_name = "GAME START"
+
+[node name="Options" parent="MenuOptions" instance=ExtResource("1")]
+layout_mode = 2
+item_name = "OPTIONS"
+
+[node name="ExitGame" parent="MenuOptions" instance=ExtResource("1")]
+layout_mode = 2
+item_name = "EXIT GAME"

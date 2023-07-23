@@ -18,5 +18,5 @@ func delete_children(node):
 		n.queue_free()
 
 
-func player_died():
+func player_dead():
 	emit_signal('player_died')

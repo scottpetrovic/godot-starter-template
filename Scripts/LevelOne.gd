@@ -9,7 +9,7 @@ var narratorText = ['WAIT!!!',
 
 
 func _ready():
-	$UI/Conversation.connect("messageEnded", self, "_messageEnded")
+	$UI/Conversation.connect("messageEnded", Callable(self, "_messageEnded"))
 
 func _canShowMessage():
 	var onLastMessage = narratorTextIndex == narratorText.size()
