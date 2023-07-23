@@ -1,12 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpxj0ax3401ty"]
+[gd_scene load_steps=4 format=3 uid="uid://bpxj0ax3401ty"]
 
 [ext_resource type="Script" path="res://Scripts/MenuItem.gd" id="1"]
 [ext_resource type="FontFile" path="res://Fonts/NormalText.tres" id="2"]
 [ext_resource type="AudioStream" uid="uid://blyi0rcwuv0f3" path="res://Sounds/menu_hover.wav" id="3_woy6j"]
-
-[sub_resource type="StyleBoxFlat" id="1"]
-bg_color = Color(1, 1, 1, 0)
-border_color = Color(1, 1, 1, 0)
 
 [node name="StartContainer" type="HBoxContainer"]
 offset_right = 800.0
@@ -24,11 +20,14 @@ text = "-"
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2")
-theme_override_styles/focus = SubResource("1")
+theme_override_font_sizes/font_size = 20
 text = "ITEM"
+flat = true
 
 [node name="SelectedAfter" type="Label" parent="."]
 visible = false

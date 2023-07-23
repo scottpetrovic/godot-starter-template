@@ -12,6 +12,11 @@ func _ready():
 	$UI/Conversation.connect("messageEnded", Callable(self, "_messageEnded"))
 
 func _canShowMessage():
+	
+	# not the clearest way to do dialogue..but ok for a short demo
+	# show message if player is close to death element
+	# the message shown increments when the last message ends
+	# which is called by the conversation script...into this one
 	var onLastMessage = narratorTextIndex == narratorText.size()
 	return $UI/Conversation.visible == false != onLastMessage
 

@@ -39,7 +39,7 @@ offset_left = -0.145447
 offset_top = 278.312
 offset_right = 796.855
 offset_bottom = 418.312
-theme_override_constants/separation = 0
+theme_override_constants/separation = 10
 
 [node name="GameStart" parent="MenuOptions" instance=ExtResource("1")]
 layout_mode = 2

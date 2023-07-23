@@ -12,6 +12,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset = Vector2(-101.373, -14.0516)
 script = ExtResource("4")
 
@@ -58,7 +60,7 @@ offset_left = 0.52124
 offset_top = 254.979
 offset_right = 797.522
 offset_bottom = 394.979
-theme_override_constants/separation = 0
+theme_override_constants/separation = 10
 
 [node name="ReturnToGame" parent="PauseMenu/MenuOptions" instance=ExtResource("1")]
 layout_mode = 2
