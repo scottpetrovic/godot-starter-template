@@ -1,9 +1,8 @@
-extends CharacterBody2D
-
+extends CharacterBody3D
 
 # Declare member variables here. Examples:
 var current_health = 1 # 1 hit and you are dead
-var move_speed = 100
+var move_speed = 10
 
  # adds up our directions to see which way to move
 # var velocity := Vector2()
@@ -16,15 +15,15 @@ func _ready():
 func get_input():
 	
 	# basic 8-way movement
-	velocity = Vector2()	
+	velocity = Vector3()	
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= 1
 	if Input.is_action_pressed("ui_down"):
-		velocity.y += 1
+		velocity.z += 1
 	if Input.is_action_pressed("ui_up"):
-		velocity.y -= 1
+		velocity.z -= 1
 	velocity = velocity.normalized() * move_speed
 
 func _physics_process(delta: float):
@@ -35,5 +34,3 @@ func _physics_process(delta: float):
 
 func _on_DamageItem_body_entered(_body):
 	current_health -= 1
-	if(current_health <= 0):
-		get_tree().change_scene_to_file("res://Scenes/GameOver.tscn")

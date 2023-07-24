@@ -6,9 +6,6 @@ func _ready():
 	$PauseMenu/MenuOptions/ReturnToGame/Button.connect("button_down", Callable(self, "toggle_pause"))
 	$PauseMenu/MenuOptions/ReturnToTitle/Button.connect("button_down", Callable(self, "load_main_menu"))
 	
-	# level will emit a player_dead() signal...which Global can listen to
-	Global.connect("player_dead", Callable(self, 'show_gameover'))
-	
 	# only play music if it is enabled
 	if(Global.isMusicOn):
 		$Music.play()

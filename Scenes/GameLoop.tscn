@@ -38,6 +38,7 @@ horizontal_alignment = 1
 
 [node name="PauseMenu" type="Node2D" parent="."]
 visible = false
+top_level = true
 scale = Vector2(1.00076, 0.998538)
 
 [node name="Background" type="TextureRect" parent="PauseMenu"]
@@ -48,18 +49,20 @@ texture = ExtResource("2")
 expand_mode = 1
 
 [node name="Title" type="Label" parent="PauseMenu"]
-offset_top = 174.667
+offset_top = 213.0
 offset_right = 795.0
-offset_bottom = 234.667
+offset_bottom = 271.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 40
 text = "PAUSED"
+horizontal_alignment = 1
 
 [node name="MenuOptions" type="VBoxContainer" parent="PauseMenu"]
-offset_left = 0.52124
-offset_top = 254.979
-offset_right = 797.522
-offset_bottom = 394.979
+offset_left = 1.0
+offset_top = 302.0
+offset_right = 798.0
+offset_bottom = 426.0
 theme_override_constants/separation = 10
 
 [node name="ReturnToGame" parent="PauseMenu/MenuOptions" instance=ExtResource("1")]

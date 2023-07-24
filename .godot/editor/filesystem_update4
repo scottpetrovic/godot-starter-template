@@ -1,8 +1,4 @@
 res://default_env.tres
 res://Scenes/MainMenu.tscn
-res://Scenes/GameLoop.tscn
-res://Scenes/GameOver.tscn
 res://Scenes/LevelOne.tscn
-res://Scenes/MenuItem.tscn
-res://Scenes/OptionsMenu.tscn
-res://Scripts/LevelOne.gd
+res://Scenes/GameLoop.tscn
